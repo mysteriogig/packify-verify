@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Package, Employee } from '../types';
 import { QrCode, Printer, PackageCheck } from 'lucide-react';
@@ -14,7 +13,6 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   const [remarks, setRemarks] = useState('');
   const [consolidatedBarcode, setConsolidatedBarcode] = useState<string | null>(null);
 
-  // Mock employee data
   const employees: Employee[] = [
     { id: '1', name: 'John Smith', role: 'worker' },
     { id: '2', name: 'Jane Doe', role: 'worker' },
@@ -26,7 +24,6 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   const supervisors = employees.filter(emp => emp.role === 'supervisor');
 
   const handleGenerateBarcode = () => {
-    // Generate a random barcode for the consolidated package
     const mockBarcode = Array(20)
       .fill(0)
       .map(() => Math.floor(Math.random() * 10))
@@ -44,7 +41,6 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   };
 
   const handlePrint = () => {
-    // In a real app, this would trigger a print dialog or generate a PDF
     alert('Printing functionality would be implemented here');
   };
 
@@ -52,20 +48,20 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   const canPrint = consolidatedBarcode !== null;
 
   return (
-    <div className="card animate-slide-in mb-6">
-      <div className="card-header">
-        <h2 className="card-title">Package Consolidation</h2>
-        <p className="card-description">Combine scanned packages and generate a final barcode</p>
+    <div className="card animate-slide-in mb-2">
+      <div className="card-header py-2">
+        <h2 className="card-title text-base">Package Consolidation</h2>
+        <p className="card-description text-xs">Combine scanned packages and generate a final barcode</p>
       </div>
-      <div className="card-content">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div className="input-field">
-            <label htmlFor="packedBy" className="input-label">Packed By</label>
+      <div className="card-content py-2">
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="input-field mb-1">
+            <label htmlFor="packedBy" className="input-label text-xs">Packed By</label>
             <select
               id="packedBy"
               value={packedBy}
               onChange={(e) => setPackedBy(e.target.value)}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             >
               <option value="">Select worker</option>
@@ -76,13 +72,13 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
               ))}
             </select>
           </div>
-          <div className="input-field">
-            <label htmlFor="checkedBy" className="input-label">Checked By</label>
+          <div className="input-field mb-1">
+            <label htmlFor="checkedBy" className="input-label text-xs">Checked By</label>
             <select
               id="checkedBy"
               value={checkedBy}
               onChange={(e) => setCheckedBy(e.target.value)}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             >
               <option value="">Select supervisor</option>
@@ -95,58 +91,55 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
           </div>
         </div>
         
-        <div className="input-field mb-4">
-          <label htmlFor="remarks" className="input-label">Remarks</label>
+        <div className="input-field mb-2">
+          <label htmlFor="remarks" className="input-label text-xs">Remarks</label>
           <textarea
             id="remarks"
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
-            className="input-control min-h-[80px]"
+            className="input-control py-1 text-xs min-h-[40px]"
             placeholder="Add any additional notes or observations..."
           />
         </div>
         
         {consolidatedBarcode && (
-          <div className="bg-muted p-4 rounded-md mb-4 flex flex-col items-center">
-            <div className="text-sm font-medium mb-2">Consolidated Package Barcode</div>
-            <div className="flex items-center gap-2 bg-background px-4 py-2 rounded-md border">
-              <QrCode size={24} className="text-primary" />
-              <span className="font-mono text-sm">{consolidatedBarcode}</span>
+          <div className="bg-muted p-2 rounded-md mb-2 flex flex-col items-center">
+            <div className="text-xs font-medium mb-1">Consolidated Package Barcode</div>
+            <div className="flex items-center gap-1 bg-background px-2 py-1 rounded-md border">
+              <QrCode size={16} className="text-primary" />
+              <span className="font-mono text-xs">{consolidatedBarcode}</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              This barcode represents {packages.length} combined packages
-            </p>
           </div>
         )}
         
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-1 mt-2">
           <button
             type="button"
-            className="btn btn-primary flex-1 sm:flex-none"
+            className="btn btn-primary py-1 text-xs h-8"
             onClick={handleGenerateBarcode}
             disabled={packages.length === 0 || !isFormValid}
           >
-            <QrCode size={16} />
+            <QrCode size={14} />
             <span>Generate Barcode</span>
           </button>
           
           <button
             type="button"
-            className="btn btn-outline flex-1 sm:flex-none"
+            className="btn btn-outline py-1 text-xs h-8"
             onClick={handlePrint}
             disabled={!canPrint}
           >
-            <Printer size={16} />
+            <Printer size={14} />
             <span>Print Label</span>
           </button>
           
           <button
             type="button"
-            className="btn btn-secondary flex-1 sm:flex-none"
+            className="btn btn-secondary py-1 text-xs h-8"
             onClick={handleConsolidate}
             disabled={packages.length === 0 || !canPrint || !isFormValid}
           >
-            <PackageCheck size={16} />
+            <PackageCheck size={14} />
             <span>Complete Consolidation</span>
           </button>
         </div>

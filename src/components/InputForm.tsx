@@ -67,91 +67,91 @@ const InputForm: React.FC<InputFormProps> = ({ onScanComplete }) => {
   };
 
   return (
-    <div className="card animate-slide-in mb-6">
-      <div className="card-header">
-        <h2 className="card-title">Package Information</h2>
-        <p className="card-description">Enter details manually or scan barcode</p>
+    <div className="card animate-slide-in mb-2">
+      <div className="card-header py-2">
+        <h2 className="card-title text-base">Package Information</h2>
+        <p className="card-description text-xs">Enter details manually or scan barcode</p>
       </div>
-      <form onSubmit={handleSubmit} className="card-content">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="input-field">
-            <label htmlFor="fgCode" className="input-label">FG Code</label>
+      <form onSubmit={handleSubmit} className="card-content py-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <div className="input-field mb-1">
+            <label htmlFor="fgCode" className="input-label text-xs">FG Code</label>
             <input
               type="text"
               id="fgCode"
               name="fgCode"
               value={formData.fgCode}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="itemCode" className="input-label">Item Code</label>
+          <div className="input-field mb-1">
+            <label htmlFor="itemCode" className="input-label text-xs">Item Code</label>
             <input
               type="text"
               id="itemCode"
               name="itemCode"
               value={formData.itemCode}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="tagNo" className="input-label">Tag No</label>
+          <div className="input-field mb-1">
+            <label htmlFor="tagNo" className="input-label text-xs">Tag No</label>
             <input
               type="text"
               id="tagNo"
               name="tagNo"
               value={formData.tagNo}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="itemName" className="input-label">Item Name</label>
+          <div className="input-field mb-1">
+            <label htmlFor="itemName" className="input-label text-xs">Item Name</label>
             <input
               type="text"
               id="itemName"
               name="itemName"
               value={formData.itemName}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="npm" className="input-label">NPM</label>
+          <div className="input-field mb-1">
+            <label htmlFor="npm" className="input-label text-xs">NPM</label>
             <input
               type="text"
               id="npm"
               name="npm"
               value={formData.npm}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               required
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="actualQty" className="input-label">Actual Qty</label>
+          <div className="input-field mb-1">
+            <label htmlFor="actualQty" className="input-label text-xs">Actual Qty</label>
             <input
               type="number"
               id="actualQty"
               name="actualQty"
               value={formData.actualQty || ''}
               onChange={handleChange}
-              className="input-control"
+              className="input-control py-1 text-xs"
               min="0"
               required
             />
           </div>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-3 mt-6">
+        <div className="flex flex-row gap-2 mt-2">
           <BarcodeScanner onScan={handleBarcodeScanned} />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary py-1 text-xs h-8">
             Add Package
           </button>
         </div>
