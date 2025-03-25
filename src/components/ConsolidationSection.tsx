@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Package, Employee } from '../types';
 import { QrCode, Printer, PackageCheck } from 'lucide-react';
@@ -11,6 +12,7 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   const [packedBy, setPackedBy] = useState('');
   const [checkedBy, setCheckedBy] = useState('');
   const [remarks, setRemarks] = useState('');
+  const [masterBarcode, setMasterBarcode] = useState('');
   const [consolidatedBarcode, setConsolidatedBarcode] = useState<string | null>(null);
 
   const employees: Employee[] = [
@@ -23,13 +25,13 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
   const workers = employees.filter(emp => emp.role === 'worker');
   const supervisors = employees.filter(emp => emp.role === 'supervisor');
 
-  const handleGenerateBarcode = () => {
-    const mockBarcode = Array(20)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 10))
-      .join('');
+  const handleMapBarcode = () => {
+    if (!masterBarcode.trim()) {
+      alert('Please enter a master barcode');
+      return;
+    }
     
-    setConsolidatedBarcode(mockBarcode);
+    setConsolidatedBarcode(masterBarcode);
   };
 
   const handleConsolidate = () => {
@@ -37,6 +39,7 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
     setPackedBy('');
     setCheckedBy('');
     setRemarks('');
+    setMasterBarcode('');
     setConsolidatedBarcode(null);
   };
 
@@ -51,7 +54,7 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
     <div className="card animate-slide-in mb-2">
       <div className="card-header py-2">
         <h2 className="card-title text-base">Package Consolidation</h2>
-        <p className="card-description text-xs">Combine scanned packages and generate a final barcode</p>
+        <p className="card-description text-xs">Combine scanned packages and map to master barcode</p>
       </div>
       <div className="card-content py-2">
         <div className="grid grid-cols-2 gap-2 mb-2">
@@ -102,9 +105,21 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
           />
         </div>
         
+        <div className="input-field mb-2">
+          <label htmlFor="masterBarcode" className="input-label text-xs">Master Barcode</label>
+          <input
+            id="masterBarcode"
+            type="text"
+            value={masterBarcode}
+            onChange={(e) => setMasterBarcode(e.target.value)}
+            className="input-control py-1 text-xs"
+            placeholder="Enter or scan master barcode..."
+          />
+        </div>
+        
         {consolidatedBarcode && (
           <div className="bg-muted p-2 rounded-md mb-2 flex flex-col items-center">
-            <div className="text-xs font-medium mb-1">Consolidated Package Barcode</div>
+            <div className="text-xs font-medium mb-1">Mapped Master Barcode</div>
             <div className="flex items-center gap-1 bg-background px-2 py-1 rounded-md border">
               <QrCode size={16} className="text-primary" />
               <span className="font-mono text-xs">{consolidatedBarcode}</span>
@@ -116,11 +131,11 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
           <button
             type="button"
             className="btn btn-primary py-1 text-xs h-8"
-            onClick={handleGenerateBarcode}
-            disabled={packages.length === 0 || !isFormValid}
+            onClick={handleMapBarcode}
+            disabled={packages.length === 0 || !masterBarcode || !isFormValid}
           >
             <QrCode size={14} />
-            <span>Generate Barcode</span>
+            <span>Map Barcode</span>
           </button>
           
           <button
