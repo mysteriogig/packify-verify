@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Package, Employee } from '../types';
-import { QrCode, Printer, PackageCheck } from 'lucide-react';
+import { QrCode, Printer, PackageCheck, ScanBarcode } from 'lucide-react';
+import { BarcodeScanner } from './BarcodeScanner';
 
 interface ConsolidationSectionProps {
   packages: Package[];
@@ -24,6 +25,10 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
 
   const workers = employees.filter(emp => emp.role === 'worker');
   const supervisors = employees.filter(emp => emp.role === 'supervisor');
+
+  const handleBarcodeScanned = (barcode: string) => {
+    setMasterBarcode(barcode);
+  };
 
   const handleMapBarcode = () => {
     if (!masterBarcode.trim()) {
@@ -107,14 +112,17 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
         
         <div className="input-field mb-2">
           <label htmlFor="masterBarcode" className="input-label text-xs">Master Barcode</label>
-          <input
-            id="masterBarcode"
-            type="text"
-            value={masterBarcode}
-            onChange={(e) => setMasterBarcode(e.target.value)}
-            className="input-control py-1 text-xs"
-            placeholder="Enter or scan master barcode..."
-          />
+          <div className="flex gap-2">
+            <input
+              id="masterBarcode"
+              type="text"
+              value={masterBarcode}
+              onChange={(e) => setMasterBarcode(e.target.value)}
+              className="input-control py-1 text-xs flex-1"
+              placeholder="Enter or scan master barcode..."
+            />
+            <BarcodeScanner onScan={handleBarcodeScanned} />
+          </div>
         </div>
         
         {consolidatedBarcode && (
