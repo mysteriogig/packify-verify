@@ -105,7 +105,7 @@ const ConsolidationSection: React.FC<ConsolidationSectionProps> = ({ packages, o
             id="remarks"
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
-            className="input-control py-1 text-xs min-h-[40px]"
+            className="input-control py-1 text-xs min-h-40"
             placeholder="Add any additional notes or observations..."
           />
         </div>
