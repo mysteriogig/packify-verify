@@ -1,7 +1,7 @@
 
 export function cn(...classNames: (string | undefined | null | false | Record<string, boolean>)[]) {
   return classNames
-    .flatMap((className): (string | false | null | undefined)[] => {
+    .flatMap((className) => {
       if (typeof className === 'object' && className !== null) {
         return Object.entries(className)
           .filter(([_, value]) => Boolean(value))
