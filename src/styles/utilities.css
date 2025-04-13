@@ -1,5 +1,5 @@
 
-/* Utility classes */
+/* Text sizing */
 .text-xs {
   font-size: 0.75rem;
 }
@@ -16,6 +16,7 @@
   font-size: 1.25rem;
 }
 
+/* Font styles */
 .font-medium {
   font-weight: 500;
 }
@@ -28,6 +29,7 @@
   text-align: center;
 }
 
+/* Margin */
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -48,6 +50,7 @@
   margin-top: 0.5rem;
 }
 
+/* Padding */
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -58,6 +61,7 @@
   padding-bottom: 0.5rem;
 }
 
+/* Flex */
 .flex {
   display: flex;
 }
@@ -86,6 +90,7 @@
   justify-content: center;
 }
 
+/* Gap */
 .gap-1 {
   gap: 0.25rem;
 }
@@ -94,6 +99,7 @@
   gap: 0.5rem;
 }
 
+/* Text color */
 .text-primary {
   color: var(--primary);
 }
@@ -106,6 +112,7 @@
   color: var(--destructive);
 }
 
+/* Border */
 .border {
   border: 1px solid var(--border);
 }
@@ -114,6 +121,7 @@
   border-radius: var(--radius);
 }
 
+/* Background */
 .bg-muted {
   background-color: var(--muted);
 }
@@ -122,18 +130,22 @@
   background-color: var(--background);
 }
 
+/* Opacity */
 .opacity-50 {
   opacity: 0.5;
 }
 
+/* Height */
 .h-8 {
   height: 2rem;
 }
 
+/* Aspect ratio */
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
 
+/* Max height */
 .max-h-40 {
   max-height: 10rem;
 }
@@ -146,10 +158,12 @@
   max-height: 80px;
 }
 
+/* Min height */
 .min-h-40 {
   min-height: 40px;
 }
 
+/* Overflow */
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -158,6 +172,7 @@
   overflow: hidden;
 }
 
+/* Position */
 .relative {
   position: relative;
 }
@@ -173,6 +188,7 @@
   left: 0;
 }
 
+/* Padding */
 .p-1 {
   padding: 0.25rem;
 }
@@ -195,6 +211,7 @@
   padding-right: 1rem;
 }
 
+/* Border radius */
 .rounded {
   border-radius: var(--radius);
 }
@@ -203,22 +220,27 @@
   border-radius: 9999px;
 }
 
+/* Background color */
 .bg-destructive {
   background-color: var(--destructive);
 }
 
+/* Object fit */
 .object-contain {
   object-fit: contain;
 }
 
+/* Max width */
 .max-w-full {
   max-width: 100%;
 }
 
+/* Max height */
 .max-h-full {
   max-height: 100%;
 }
 
+/* Accessibility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -231,10 +253,12 @@
   border-width: 0;
 }
 
+/* Cursor */
 .cursor-pointer {
   cursor: pointer;
 }
 
+/* Space between children */
 .space-y-1 > * + * {
   margin-top: 0.25rem;
 }
@@ -243,6 +267,7 @@
   margin-top: 0.5rem;
 }
 
+/* Animations */
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -269,6 +294,7 @@
   }
 }
 
+/* Border */
 .border-t {
   border-top: 1px solid var(--border);
 }
@@ -281,6 +307,7 @@
   border-color: var(--primary);
 }
 
+/* Position */
 .top-2 {
   top: 0.5rem;
 }
@@ -289,14 +316,16 @@
   right: 0.5rem;
 }
 
-.hover\:bg-muted:hover {
+/* Hover */
+.hover-bg-muted:hover {
   background-color: var(--muted);
 }
 
-.hover\:text-destructive:hover {
+.hover-text-destructive:hover {
   color: var(--destructive);
 }
 
+/* Transition */
 .transition-opacity {
   transition-property: opacity;
 }
@@ -305,6 +334,7 @@
   transition-duration: 500ms;
 }
 
+/* Grid columns */
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -313,11 +343,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* Custom styles for specific components */
-.tracking-tight {
-  letter-spacing: -0.025em;
-}
-
+/* Status colors */
 .bg-green-50 {
   background-color: #f0fdf4;
 }

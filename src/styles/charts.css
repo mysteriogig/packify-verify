@@ -1,16 +1,17 @@
 
-/* Chart component styles */
+/* Chart container */
 .chart-container {
   flex: 1;
   aspect-ratio: 16 / 9;
   justify-content: center;
-  text-xs: 0.75rem;
 }
 
+/* Chart text */
 .chart-container .recharts-cartesian-axis-tick {
   fill: var(--muted-foreground);
 }
 
+/* Chart grid */
 .chart-container .recharts-cartesian-grid line[stroke='#ccc'] {
   stroke: var(--border);
   opacity: 0.5;
